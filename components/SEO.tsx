@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import siteMetadata from '@/data/siteMetadata'
+import Script from 'next/script'
 
 const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl = null }) => {
 	const router = useRouter()
@@ -149,14 +150,17 @@ export const BlogSEO = ({
 				canonicalUrl={canonicalUrl}
 			/>
 			<Head>
-				{date && <meta property="article:published_time" content={publishedAt} />}
-				{lastmod && <meta property="article:modified_time" content={modifiedAt} />}
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(structuredData, null, 2),
-					}}
-				/>
+				<>
+					{date && <meta property="article:published_time" content={publishedAt} />}
+					{lastmod && <meta property="article:modified_time" content={modifiedAt} />}
+					<Script
+						id="structured_data"
+						type="application/ld+json"
+						dangerouslySetInnerHTML={{
+							__html: JSON.stringify(structuredData, null, 2),
+						}}
+					/>
+				</>
 			</Head>
 		</>
 	)

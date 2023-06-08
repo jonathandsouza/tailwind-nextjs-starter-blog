@@ -14,7 +14,12 @@ const discussUrl = (slug) =>
 		`${siteMetadata.siteUrl}/blog/${slug}`
 	)}`
 
-const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+const postDateTemplate = {
+	weekday: 'long',
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+} as const
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
 	const { slug, fileName, date, title, images, tags } = frontMatter
@@ -65,8 +70,8 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
 											{author.avatar && (
 												<Image
 													src={author.avatar}
-													width="38px"
-													height="38px"
+													width={38}
+													height={38}
 													alt="avatar"
 													className="h-10 w-10 rounded-full"
 												/>
