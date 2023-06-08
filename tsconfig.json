@@ -19,7 +19,9 @@
 			"@/layouts/*": ["./layouts/*"],
 			"@/lib/*": ["./lib/*"],
 			"@/css/*": ["./css/*"]
-		}
+		},
+
+		"typeRoots": ["./node_modules/@types", "./types"]
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]
