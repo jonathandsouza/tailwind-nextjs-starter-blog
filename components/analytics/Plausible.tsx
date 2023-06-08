@@ -12,8 +12,8 @@ const PlausibleScript = () => {
 			/>
 			<Script strategy="lazyOnload" id="plausible-script">
 				{`
-            window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
-        `}
+					window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
+				`}
 			</Script>
 		</>
 	)
