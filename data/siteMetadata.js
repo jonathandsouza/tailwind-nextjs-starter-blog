@@ -10,13 +10,16 @@ const siteMetadata = {
 	siteLogo: '/static/images/logo.png',
 	image: '/static/images/avatar.png',
 	socialBanner: '/static/images/twitter-card.png',
-	email: 'address@yoursite.com',
+	email: 'mail2jona@yahoo.com',
 	github: 'https://github.com',
-	twitter: 'https://twitter.com/Twitter',
+	twitter: 'https://twitter.com/Jona_the_based',
 	facebook: 'https://facebook.com',
+	leetcode: 'https://leetcode.com/jonathandsouza/',
+	hackerrank: 'https://www.hackerrank.com/JonathanDsouza',
 	youtube: 'https://youtube.com',
 	linkedin: 'https://www.linkedin.com',
 	locale: 'en-US',
+	stackoverflow: 'https://stackoverflow.com/users/3051279/jonathan-dsouza',
 	analytics: {
 		// If you want to use an analytics provider you have to add it to the
 		// content security policy in the `next.config.js` file.
