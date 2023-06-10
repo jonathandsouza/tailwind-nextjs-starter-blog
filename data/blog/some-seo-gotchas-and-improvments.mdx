@@ -1,0 +1,28 @@
+---
+title: 'Some SEO gotchas and improvments'
+date: '05-08-2022'
+tags: ['SEO']
+draft: false
+summary: 'In this article we will be going over some SEO gotchas and improvments'
+---
+
+## Introduction
+
+My company recently hired an external consultant to suggest some SEO improvements. I would like to share some of the insights here.
+
+##Preloading images for better SEO
+Google has a finite crawl budget. If you want certain images on your website to be highlighted and associated with your website. You should ensure they are loaded earlier in the lifecycle. You can achieve this by [preloading](https://web.dev/preload-responsive-images/) the important images.
+
+## Pre-connect to externals
+
+If you are downloading assets from external domains it might be a good idea to [pre-connect to the external domains](https://web.dev/preconnect-and-dns-prefetch/).
+
+## The Problem with Tab layout & proposed solution.
+
+Avoid using tabbed layouts in your website. Often important contents on your website are hidden behind a tab. The golden rule of good SEO is to have good content. Hiding you content behind a tab is not the best idea. If you you have already built a complex website using tabbed layout. This guide here might save you a complex re-write.
+
+## The Problem with Lazy loaded content & proposed solution.
+
+One of the subtlest foot guns I have encountered during front-end development is lazy loading content on scroll.
+
+Even though loading content which are off screen are essential for good performance, doing this will through off the SEO of your website. The only way to have the best of both worlds is to pre-render the content served to crawlers
