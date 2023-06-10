@@ -1,7 +1,7 @@
 ---
 name: Jonathan Dsouza
 avatar: /static/images/avatar.png
-occupation: Lead front-end developer at Voordeeluitjes.nl
+occupation: Lead front-end developer
 company: voordeeluitjes.nl
 email: mail2jona@yahoo.com
 twitter: https://twitter.com/Jona_the_based
