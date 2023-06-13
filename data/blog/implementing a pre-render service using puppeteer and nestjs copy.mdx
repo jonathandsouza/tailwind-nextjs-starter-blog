@@ -1,0 +1,79 @@
+---
+title: 'Implementing a pre-render service using Puppeteer & NestJS'
+date: '2022-07-31'
+tags: ['NestJS', 'Puppeteer', 'NodeJS']
+draft: false
+summary: 'Implementation of a pre-rendering solution using Puppeteer & NestJS'
+---
+
+## What is a Pre-render service?
+
+A pre-render service will take a URL as an input and spit out the HTML content of the URL. This is useful for SEO purposes, as it will help you to build more reachable web application.
+
+## Why do you need a Pre-render service?
+
+Say you have a website built in a modern SPA framework or library. In such applications, most of the UI rendering and data fetching happens on the client side. Due to this shortcoming, whenever your page is crawled there is good chance that the crawler does not have the opportunity to crawl your page accurately. The pre-render service described in this article will solve this problem for you.
+
+At this point, some of you might comment. "Ohh No! I use a SSR framework like Next.js or Remix and this problem doesn't apply to my use case". For those, please consider the following use cases:
+
+### Use case 1:
+
+The cardinal rule of building performant websites is to load less dom. Thinking along this lines. You might be tempted to lazy load the footer of your website. This is a sure fire way to get a call from the SEO team calling you an idot. Thus the dilemma , can you lazy load the footer & not suffer from the consequences of this? pre-rendering is the solution you are looking for.
+
+### Use case 2:
+
+Say you have a tab layout & the contents of each individual tab is loaded via an API. How do you make sure when web crawlers crawl your website the content of the tabs are available for crawling? pre-rendering is the solution you are looking for.
+
+## Tools & libs, we will be using to build the service
+
+1. [Puppeteer](https://github.com/puppeteer/puppeteer)
+2. [NestJS](https://nestjs.com/)
+
+## Implementation
+
+The sources for this implementation can be found [here](https://github.com/jonathandsouza/puppeteer-pre-rendering-service)
+
+## 1. setup nestjs
+
+```bash
+npm i -g @nestjs/cli
+nest new pre-render-service
+```
+
+## 2. configure app default route & controller (source)
+
+```bash
+npm install puppeteer @types/puppeteer
+npm install @types/puppeteer -D
+```
+
+## 3. configure app default route & controller (source)
+
+![tailwind-nextjs-banner](/static/images/pre-render-controller.png)
+
+## 4. Test
+
+```bash
+npm install
+npm run start
+```
+
+Once the service is running. Go to the following [link](http://localhost:3030/?url=https://www.google.com)(http://localhost:3030/?url=https://www.google.com/). Observe that the response of the request is static content.
+
+## Deployment
+
+A quick note on deployment. Ensure that your reverse proxy is configured to route your requests to the pre-render service based on the user agent of the incoming request.
+
+## Solving Problems using the pre-render service
+
+Earlier in this article, we discussed some use cases. With the pre-render service in place we are now have the necessary tooling to solve these problems.
+
+The solution is ridiculously simple. All we need to do is the following:
+
+1. All we need is to identify the request coming from pre-render service.We can achieve this by adding a query parm to the request coming from pre-render.
+
+2. We need to build feature flags in our app that will turn off certain features which are problematic from an SEO perspective. For example lazy loading of the lazy loading the content footer or the tab layout.
+
+## Conclusion
+
+With the introduction of SSR & SSG frameworks such as NextJS & Remix, I was hoping the need of such pre-rendering service would be a thing of the past but alas there are still niche scenarios where such an service might have some utility

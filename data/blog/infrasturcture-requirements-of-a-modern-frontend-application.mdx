@@ -1,0 +1,53 @@
+---
+title: 'Infrastructure requirements of a modern frontend application'
+date: '2022-09-20'
+tags: ['Performance', 'Infrastructure', 'Monitoring']
+draft: false
+summary: 'Implementation of a pre-rendering solution using Puppeteer & NestJS'
+---
+
+## Deployment
+
+### Deployment without downtime
+
+In gods year 2022, you should be able to deploy your front-end at any time a feature is ready to ship. If you are in a situation where you are unable to ship a feature for fear of causing an outage of your front-end, then you have a fundamental problem with you deployment stack & need to re-evaluate the decision that brought you to this point. Sorry fam tough love time.
+
+### Deployment without disruption
+
+This requirement from your deployment stack may be a little subtle. Say you have a user in the checkout page and at the very moment your customer is doing a booking you in your infinite wisdom decided to deploy a feature. The customer should be able to complete their purchase without any disruption. Your infrastructure should account for this scenario.
+
+## Performance
+
+### Time to first Byte (TTFB)
+
+This is what we call in the business an easy win. Of all the [Core web vitals](https://web.dev/learn-web-vitals/) to optimize for this has to be in my opinion the easiest. Just get a CDN or requisition a front-end cloud infrastructure like [Vercel](https://vercel.com/).
+
+### Images
+
+If you have worked in front-end development. You already know that a large chunk of your bandwidth is dominated by images. Additionally having your images load quickly is important from a performance point of view. especially for the LCP web vital. Hence having your front-end infrastructure deliver optimized images is a must.
+
+## Security
+
+### DDOS Protection
+
+If you run a ecommerce websites its absolutely paramount to have some sort of security or defense against DDoS attacks.
+
+### SSL & HTTPS
+
+If you want your customers to consider your website seriously & with confidence, Serving your content through SSL & HTTPS is necessary.
+
+## Monitoring
+
+Alas! once you have taken care of all the points mentioned before, You now have a performant production grade website. The points mentioned next will help you make sure your website continue to run properly.
+
+### Performance monitoring
+
+As mentioned earlier, the web vitals of your website play a critical role in how your page is ranked by google. Hence keeping an eye on your web vitals is essential. Identifying which are the pages performing poorly in a real time setting with actual traffic will give you the insight necessary to optimizing your web app.
+
+### Error Monitoring
+
+No matter how good your QA team is. There is always a possibility that there is a failing edge case. Error monitoring will allow you to catch the problem in real time and not after the fact.
+
+## Conclusion
+
+The Goal of this article was to try to consolidate various infrastructure needs for any modern front-end application and is no way an exhaustive list. This is a good starter to point you in the right direction. Hope you found this article helpful.

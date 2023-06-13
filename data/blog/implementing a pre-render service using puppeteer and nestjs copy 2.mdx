@@ -1,0 +1,21 @@
+---
+title: 'CSS In JS is not the best solution'
+date: '2022-10-5'
+tags: ['CSS-in-JS', 'Tailwind CSS']
+draft: false
+summary: 'CSS in JS is not the best solution and here is why'
+---
+
+## Rant
+
+Without giving my age, I have worked in front-end a long time and every now and then a solution pops ups which is supposed to replace CSS permanently. There is a grave yard of such solutions. CSS in JS solutions are new iteration of this trend.
+
+CSS has been around for over two decades and the industry has a deep understanding of the limitations of CSS. Additionally, what CSS is not capable of doing are solved by solutions such as pre-processors ([SCSS](https://sass-lang.com/) & [LESS](https://lesscss.org/)) and post processors such as [PostCSS](https://postcss.org/)
+
+My biggest problem with CSS in JS solutions is that it adds javascript over head to your bundle. We may argue what is overhead actually is but we can both agree that this overhead is a non zero number.
+
+In a time when google nudges you to reduce your javascript footprint ([TTFB](https://web.dev/ttfb/)) and simultaneously we are seeing a re-immergence of server side rendering solutions. CSS in JS solutions are completely miss placed.
+
+## A better solution
+
+Tailwind CSS is in my opinion a very clean & efficient way to write CSS. By building complex UI using utility classes it ensures that your CSS bundle is very efficient only containing the styles you really need. Additionally during build time the un-used utilities are purged from your bundle.
