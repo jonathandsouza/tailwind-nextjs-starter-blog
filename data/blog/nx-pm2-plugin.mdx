@@ -36,10 +36,17 @@ A comprehensive guide to setting up the Nx monorepo can be found [here](https://
 
 ## 2. Setting up NestJS
 
-[Nx](https://nx.dev/) provides a [NestJS](https://nestjs.com/) schematics to setup a NestJS project within the monorepo.
+[Nx](https://nx.dev/) provides a [NestJS](https://nestjs.com/) generator to setup a NestJS project within the monorepo.
+
+First install the NestJS generator.
 
 ```bash
 npm install -D @nx/nest
+```
+
+Then generate a NestJS project.
+
+```bash
 npx nx g @nx/nest:app my-nest-app
 ```
 
