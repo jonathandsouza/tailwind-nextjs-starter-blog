@@ -1,0 +1,88 @@
+---
+title: "Guide to Running a Node Server in Nx Monorepo using PM2 Process Manager"
+date: '2023-06-24'
+tags: ['NodeJS', 'Nx', 'PM2', "Express", "NestJS"]
+draft: false
+summary: 'Discover the comprehensive guide on how to effectively operate diverse Node servers, including NestJS and Express, within an Nx mono repository. 
+The article focuses on leveraging the PM2 Process Manager for streamlined operations and enhanced efficiency. 
+Perfect for both beginners and seasoned developers, it offers step-by-step instructions and expert insights to successfully manage your server processes.'
+---
+
+## Introduction
+
+[PM2](https://pm2.keymetrics.io/) is a daemon process manager that will help you manage and keep your application online 24/7.
+It has a lot of features that will help you in the process of deploying and maintaining your application.
+
+Aditioanlly [PM2](https://pm2.keymetrics.io/) allows you to run a nodeJS server in [cluster mode](https://pm2.keymetrics.io/docs/usage/cluster-mode/).
+Which dramatically improves the performance of your application and allows you to scale your application horizontally.
+
+In this article we will cover the following:
+
+1. Setting up a [Nx monorepo](https://nx.dev/)
+2. Setting up a [NestJS](https://nestjs.com/) project within the Nx Monorepo.
+3. Running NestJS with [PM2](https://pm2.keymetrics.io/) using [Nx-PM2-Plugin](https://www.npmjs.com/package/nx-pm2-plugin).
+
+It must be noted that the same approach can be used for any nodeJS project within Nx.
+
+## 1. Setting up a Nx Monorepo
+
+In this section we will be setting up a [Nx monorepo](https://nx.dev/) using the [integrated mode](https://nx.dev/tutorials/integrated-repo-tutorial) scheme.
+
+```bash
+npx create-nx-workspace@latest myorg --preset=ts
+```
+
+A comprehensive guide to setting up the Nx monorepo can be found [here](https://nx.dev/tutorials/integrated-repo-tutorial);
+
+## 2. Setting up NestJS
+
+[Nx](https://nx.dev/) provides a [NestJS](https://nestjs.com/) schematics to setup a NestJS project within the monorepo.
+
+```bash
+npm install -D @nx/nest
+npx nx g @nx/nest:app my-nest-app
+```
+
+A comprehensive guide to setup NestJS within Nx can be found [here](https://nx.dev/packages/nest)
+
+## 3.Running NestJS with PM2
+
+Install PM2 globally.
+
+```bash
+npm install pm2 -g
+```
+
+Install [Nx-PM2-Plugin](https://www.npmjs.com/package/nx-pm2-plugin)
+
+```bash
+npm i nx-pm2-plugin
+```
+
+Add the following task to project.json of the NestJS project.
+
+```json
+"pm2": {
+	"executor": "nx-pm2-plugin:pm2-executor",
+	"options": {
+		"command": "my-nest-app:serve:production",
+		"name": "example"
+	}
+}
+```
+
+You can now run the task using the following command:
+
+```bash
+npx nx run my-nest-app:pm2
+```
+
+You can monitor the service instances using the following command:
+
+```bash
+pm2 monit
+```
+
+## Conclusion
+
+[PM2](https://pm2.keymetrics.io/) is a daemon process manager that will help you manage and keep your application online 24/7. It has a lot of features that will help you in the process of deploying and maintaining your application.
