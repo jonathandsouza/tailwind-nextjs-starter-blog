@@ -1,21 +1,17 @@
 // @TODO: Add project list.
 const projectsData = [
 	{
-		title: 'A Search Engine',
-		description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-		imgSrc: '/static/images/google.png',
-		href: 'https://www.google.com',
+		title: 'Nx-pm2-plugin',
+		description: `A plugin for Nx that allows you to run any node script as a pm2 process.`,
+		imgSrc: '/static/images/nx-logo.png',
+		href: 'https://www.npmjs.com/package/nx-pm2-plugin',
 	},
 	{
-		title: 'The Time Machine',
-		description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
+		title: 'Simple date utilities',
+		description: `A simple date utility library for javascript.`,
 		imgSrc: '/static/images/time-machine.jpg',
-		href: '/blog/the-time-machine',
+		href: 'https://www.npmjs.com/package/simple-date-utilities',
 	},
 ]
 
-export default []
+export default projectsData

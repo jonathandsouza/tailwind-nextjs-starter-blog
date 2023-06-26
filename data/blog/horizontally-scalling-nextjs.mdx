@@ -1,0 +1,79 @@
+---
+title: 'How to horizontally scale a nextJS application using PM2'
+date: '2023-06-30'
+tags: ['NodeJS', 'Nx', 'PM2', 'Express', 'NestJS']
+draft: true
+summary: 'In this article we will cover how to horizontally scale a nextJS application using PM2.'
+---
+
+## Introduction
+
+NodeJS server is single threaded in nature as such depending on the application there is only a finite amount of requests that can be handled by a single instance of the application.
+If the application is CPU intensive then the number of requests that can be handled by a single instance of the application will be even lower.
+
+Hence there are use cases where you would need to horizontally scale the application to handle more requests.
+
+In this article we will cover how to horizontally scale a nextJS application using PM2.
+
+## What is horizontally scaling?
+
+Horizontal scaling, often referred to as scaling out, is the process of adding more machines or nodes to a system to improve performance and capacity.
+
+In our case we will be adding more instances of a nextJS application using PM2 process manager.
+
+## What is PM2?
+
+[PM2](https://pm2.keymetrics.io/) is a daemon process manager that will help you manage and keep your application online 24/7.
+It has a lot of features that will help you in the process of deploying and maintaining your application.
+
+Additionally [PM2](https://pm2.keymetrics.io/) allows you to run a nodeJS server in [cluster mode](https://pm2.keymetrics.io/docs/usage/cluster-mode/).
+Which dramatically improves the performance of your application and allows you to scale your application horizontally.
+
+## Implementation
+
+Setup a NextJS project
+
+```bash
+npx create-next-app@latest my-next-app
+```
+
+Install PM2 globally.
+
+```bash
+npm install pm2 -g
+```
+
+Create a `ecosystem.config.js` file in the root of the project.
+
+```bash
+pm2 ecosystem
+```
+
+Setup your ecosystem file as follows.
+
+```json
+module.exports = {
+    apps : [{
+        script: 'npm run start',
+        instances: 3,
+    }],
+};
+```
+
+Further ecosystem configuration options can be found [here](https://pm2.keymetrics.io/docs/usage/application-declaration/).
+
+Start the application using PM2.
+
+```bash
+pm2 start
+```
+
+You can check the status of the application using the following command.
+
+```bash
+pm2 monit
+```
+
+## Conclusion
+
+[PM2](https://pm2.keymetrics.io/) is a daemon process manager that will help you manage and keep your application online 24/7. It has a lot of features that will help you in the process of deploying and maintaining your application.
