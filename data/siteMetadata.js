@@ -5,7 +5,7 @@ const siteMetadata = {
 	description: '',
 	language: 'en-us',
 	theme: 'system', // system, dark or light
-	siteUrl: 'https://jonascodeblog.vercel.app/',
+	siteUrl: 'https://jonascodeblog.vercel.app',
 	siteRepo: 'https://github.com/jonathandsouza/tailwind-nextjs-starter-blog',
 	siteLogo: '/static/images/logo.png',
 	image: '/static/images/avatar.png',
