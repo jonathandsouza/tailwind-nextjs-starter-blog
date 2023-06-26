@@ -1,9 +1,9 @@
 ---
-title: 'How to horizontally scale a nextJS application using PM2'
+title: 'How to horizontally scale a NextJS application using PM2'
 date: '2023-06-30'
-tags: ['NodeJS', 'Nx', 'PM2', 'Express', 'NestJS']
-draft: true
-summary: 'In this article we will cover how to horizontally scale a nextJS application using PM2.'
+tags: ['NodeJS', 'PM2', 'NextJS']
+draft: false
+summary: 'In this article we will cover how to horizontally scale a NextJS application using PM2.'
 ---
 
 ## Introduction
@@ -13,13 +13,13 @@ If the application is CPU intensive then the number of requests that can be hand
 
 Hence there are use cases where you would need to horizontally scale the application to handle more requests.
 
-In this article we will cover how to horizontally scale a nextJS application using PM2.
+In this article we will cover how to horizontally scale a NextJS application using PM2.
 
 ## What is horizontally scaling?
 
 Horizontal scaling, often referred to as scaling out, is the process of adding more machines or nodes to a system to improve performance and capacity.
 
-In our case we will be adding more instances of a nextJS application using PM2 process manager.
+In our case we will be adding more instances of a NextJS application using PM2 process manager.
 
 ## What is PM2?
 
@@ -51,13 +51,16 @@ pm2 ecosystem
 
 Setup your ecosystem file as follows.
 
-```json
+```javascript
 module.exports = {
-    apps : [{
-        script: 'npm run start',
-        instances: 3,
-    }],
-};
+	apps: [
+		{
+			script: 'npm run start',
+			instances: 3,
+			name: 'my-next-app',
+		},
+	],
+}
 ```
 
 Further ecosystem configuration options can be found [here](https://pm2.keymetrics.io/docs/usage/application-declaration/).
@@ -74,6 +77,36 @@ You can check the status of the application using the following command.
 pm2 monit
 ```
 
+## SSG + ISR
+
+One last caveat to keep in mind is that if you are using [SSG](https://NextJS.org/docs/basic-features/data-fetching#getstaticprops-static-generation) with [ISR](https://NextJS.org/docs/basic-features/data-fetching#incremental-static-regeneration)
+then you will need to configure NextJS to stop using in memory cache and use [file system cache instead.](https://NextJS.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration#self-hosting-isr)
+
+Add the following in `next.config.js` file.
+
+```javascript
+module.exports = {
+	experimental: {
+		// Defaults to 50MB
+		isrMemoryCacheSize: 0,
+	},
+}
+```
+
 ## Conclusion
 
-[PM2](https://pm2.keymetrics.io/) is a daemon process manager that will help you manage and keep your application online 24/7. It has a lot of features that will help you in the process of deploying and maintaining your application.
+In this article we covered how to horizontally scale a NextJS application using PM2.
+We also covered how to configure NextJS to use file system cache instead of in memory cache when using SSG with ISR.
+
+Also we configured pm2 to run 3 instances of the application.
+Similarly you can configure pm2 to run as many instances as you need.
+
+## Further reading
+
+1. [PM2](https://pm2.keymetrics.io/)
+2. [NextJS](https://NextJS.org/)
+3. [SSG](https://NextJS.org/docs/basic-features/data-fetching#getstaticprops-static-generation)
+4. [ISR](https://NextJS.org/docs/basic-features/data-fetching#incremental-static-regeneration)
+5. [Cluster mode](https://pm2.keymetrics.io/docs/usage/cluster-mode/)
+6. [Ecosystem configuration](https://pm2.keymetrics.io/docs/usage/application-declaration/)
+7. [Self hosting ISR](https://NextJS.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration#self-hosting-isr)
