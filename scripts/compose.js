@@ -33,11 +33,11 @@ const genFrontMatter = (answers) => {
 	const authorArray = answers.authors.length > 0 ? "'" + answers.authors.join("','") + "'" : ''
 
 	let frontMatter = dedent`---
-  title: ${answers.title ? answers.title : 'Untitled'}
+  title: "${answers.title ? answers.title : 'Untitled'}"
   date: '${date}'
   tags: [${answers.tags ? tags : ''}]
   draft: ${answers.draft === 'yes' ? true : false}
-  summary: ${answers.summary ? answers.summary : ' '}
+  summary: "${answers.summary ? answers.summary : ' '}"
   images: []
   layout: ${answers.layout}
   canonicalUrl: ${answers.canonicalUrl}
@@ -108,9 +108,8 @@ inquirer
 			.replace(/-+/g, '-')
 		const frontMatter = genFrontMatter(answers)
 		if (!fs.existsSync('data/blog')) fs.mkdirSync('data/blog', { recursive: true })
-		const filePath = `data/blog/${fileName ? fileName : 'untitled'}.${
-			answers.extension ? answers.extension : 'md'
-		}`
+		const filePath = `data/blog/${fileName ? fileName : 'untitled'}.${answers.extension ? answers.extension : 'md'
+			}`
 		fs.writeFile(filePath, frontMatter, { flag: 'wx' }, (err) => {
 			if (err) {
 				throw err
